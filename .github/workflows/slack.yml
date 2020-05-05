@@ -1,0 +1,23 @@
+name: Slack test
+
+on: [push]
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Variables
+        id: vars
+        run: echo "::set-output name=SHORT_COMMIT_ID::$(git rev-parse --short HEAD)"
+
+      - name: Notify Slack
+        uses: satterly/actions/typescript-action@master
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,diff,author,action,issue,eventName,ref,workflow
+        if: always()
