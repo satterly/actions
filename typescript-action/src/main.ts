@@ -17,6 +17,9 @@ async function run(): Promise<void> {
     const actor = context.actor
     const eventName = context.eventName
 
+    const commits = context.payload.commits
+    const messages = commits
+
     core.debug(JSON.stringify(context))
 
     const sender = context.payload.sender
@@ -42,7 +45,14 @@ async function run(): Promise<void> {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `${eventName} by ${actor}`
+            text: `${context.number} ${eventName} by ${actor}`
+          }
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `${commits.length} commits\n${messages}`
           }
         },
         {
