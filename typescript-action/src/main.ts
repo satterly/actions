@@ -1,5 +1,6 @@
 
 import * as core from '@actions/core'
+import * as github from '@actions/github'
 import {IncomingWebhook} from '@slack/webhook'
 
 async function run(): Promise<void> {
@@ -11,8 +12,12 @@ async function run(): Promise<void> {
     }
     const webhook = new IncomingWebhook(url, defaults)
 
+
+    const { sha } = github.context;
+    const { owner, repo } = github.context.repo;
+
     await webhook.send({
-      text: 'Danny Torrence left a 1 star review for your property.',
+      text: github.context.workflow,
       blocks: [
         {
           type: 'section',
