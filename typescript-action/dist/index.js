@@ -4320,7 +4320,7 @@ function run() {
                     {
                         type: 'section',
                         text: {
-                            type: 'mrkdwn',
+                            type: 'plain_text',
                             text: `<img src="${sender.avatar_url}"> ${sender.login}`
                         }
                     },
