@@ -14,6 +14,9 @@ async function run(): Promise<void> {
 
     const context = (github as any).context
 
+    const actor = context.actor
+    const eventName = context.eventName
+
     core.debug(JSON.stringify(context))
 
     const sender = context.payload.sender
@@ -31,15 +34,15 @@ async function run(): Promise<void> {
         {
           type: 'section',
           text: {
-            type: 'plain_text',
-            text: `<img src="${sender.avatar_url}"> ${sender.login}`
+            type: 'mrkdwn',
+            text: `![avatar](${sender.avatar_url}) ${sender.login}`
           }
         },
         {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: 'comment'
+            text: `${eventName} by ${actor}`
           }
         },
         {

@@ -4307,6 +4307,8 @@ function run() {
             };
             const webhook = new webhook_1.IncomingWebhook(url, defaults);
             const context = github.context;
+            const actor = context.actor;
+            const eventName = context.eventName;
             core.debug(JSON.stringify(context));
             const sender = context.payload.sender;
             const repository = context.payload.repository;
@@ -4320,15 +4322,15 @@ function run() {
                     {
                         type: 'section',
                         text: {
-                            type: 'plain_text',
-                            text: `<img src="${sender.avatar_url}"> ${sender.login}`
+                            type: 'mrkdwn',
+                            text: `![avatar](${sender.avatar_url}) ${sender.login}`
                         }
                     },
                     {
                         type: 'section',
                         text: {
                             type: 'mrkdwn',
-                            text: 'comment'
+                            text: `${eventName} by ${actor}`
                         }
                     },
                     {
