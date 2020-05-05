@@ -14,7 +14,7 @@ async function run(): Promise<void> {
 
     const context = (github as any).context
 
-    core.debug(context.toString())
+    core.debug(JSON.stringify(context))
 
     const repository = context.payload.repository
     const issue = context.payload.issue

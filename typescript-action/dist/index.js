@@ -4307,7 +4307,7 @@ function run() {
             };
             const webhook = new webhook_1.IncomingWebhook(url, defaults);
             const context = github.context;
-            core.debug(context.toString());
+            core.debug(JSON.stringify(context));
             const repository = context.payload.repository;
             const issue = context.payload.issue;
             const comment = ((_a = context.payload.comment) === null || _a === void 0 ? void 0 : _a.body) || '';
