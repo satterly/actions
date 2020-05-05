@@ -12,6 +12,10 @@ async function run(): Promise<void> {
     }
     const webhook = new IncomingWebhook(url, defaults)
 
+    const context = (github as any).context
+    const repository = context.payload.repository
+    const issue = context.payload.issue
+    const comment = context.payload.comment.body
 
     const { sha } = github.context;
     const { owner, repo } = github.context.repo;
@@ -23,7 +27,7 @@ async function run(): Promise<void> {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: 'Danny Torrence left the following review for your property:'
+            text: comment
           }
         },
         {

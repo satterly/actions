@@ -4305,6 +4305,10 @@ function run() {
                 icon_emoji: ':bowtie:',
             };
             const webhook = new webhook_1.IncomingWebhook(url, defaults);
+            const context = github.context;
+            const repository = context.payload.repository;
+            const issue = context.payload.issue;
+            const comment = context.payload.comment.body;
             const { sha } = github.context;
             const { owner, repo } = github.context.repo;
             yield webhook.send({
@@ -4314,7 +4318,7 @@ function run() {
                         type: 'section',
                         text: {
                             type: 'mrkdwn',
-                            text: 'Danny Torrence left the following review for your property:'
+                            text: comment
                         }
                     },
                     {
