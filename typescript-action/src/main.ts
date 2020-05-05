@@ -13,9 +13,12 @@ async function run(): Promise<void> {
     const webhook = new IncomingWebhook(url, defaults)
 
     const context = (github as any).context
+
+    core.debug(context)
+
     const repository = context.payload.repository
     const issue = context.payload.issue
-    const comment = context.payload.comment.body
+    const comment = context.payload.comment?.body || ''
 
     const { sha } = github.context;
     const { owner, repo } = github.context.repo;

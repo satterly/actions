@@ -4298,6 +4298,7 @@ const core = __importStar(__webpack_require__(470));
 const github = __importStar(__webpack_require__(469));
 const webhook_1 = __webpack_require__(736);
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const url = process.env.SLACK_WEBHOOK_URL;
@@ -4306,9 +4307,10 @@ function run() {
             };
             const webhook = new webhook_1.IncomingWebhook(url, defaults);
             const context = github.context;
+            core.debug(context);
             const repository = context.payload.repository;
             const issue = context.payload.issue;
-            const comment = context.payload.comment.body;
+            const comment = ((_a = context.payload.comment) === null || _a === void 0 ? void 0 : _a.body) || '';
             const { sha } = github.context;
             const { owner, repo } = github.context.repo;
             yield webhook.send({
