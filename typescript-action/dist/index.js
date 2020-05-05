@@ -4308,6 +4308,7 @@ function run() {
             const webhook = new webhook_1.IncomingWebhook(url, defaults);
             const context = github.context;
             core.debug(JSON.stringify(context));
+            const sender = context.payload.sender;
             const repository = context.payload.repository;
             const issue = context.payload.issue;
             const comment = ((_a = context.payload.comment) === null || _a === void 0 ? void 0 : _a.body) || '';
@@ -4316,6 +4317,13 @@ function run() {
             yield webhook.send({
                 text: github.context.workflow,
                 blocks: [
+                    {
+                        type: 'section',
+                        text: {
+                            type: 'mrkdwn',
+                            text: `<img src="${sender.avatar_url}"> ${sender.login}`
+                        }
+                    },
                     {
                         type: 'section',
                         text: {
