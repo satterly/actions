@@ -19,5 +19,4 @@ jobs:
         uses: satterly/actions/typescript-action@master
         with:
           status: ${{ job.status }}
-          fields: repo,message,commit,diff,author,action,issue,eventName,ref,workflow
         if: always()
