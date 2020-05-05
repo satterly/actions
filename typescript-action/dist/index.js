@@ -4320,7 +4320,7 @@ function run() {
                         type: 'section',
                         text: {
                             type: 'mrkdwn',
-                            text: comment
+                            text: 'comment'
                         }
                     },
                     {

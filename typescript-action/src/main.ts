@@ -30,7 +30,7 @@ async function run(): Promise<void> {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: comment
+            text: 'comment'
           }
         },
         {
