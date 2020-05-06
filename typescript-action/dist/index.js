@@ -4326,7 +4326,7 @@ function run() {
                         color: '#2eb886',
                         pretext: 'Optional text that appears above the attachment block',
                         author_name: sender.login,
-                        author_link: sender.url,
+                        author_link: sender.html_url,
                         author_icon: sender.avatar_url,
                         title: 'Slack API Documentation',
                         title_link: 'https://api.slack.com/',
@@ -4340,7 +4340,7 @@ function run() {
                         ],
                         image_url: 'http://my-website.com/path/to/image.jpg',
                         thumb_url: 'http://example.com/path/to/thumb.png',
-                        footer: 'Slack API',
+                        footer: `<${repository.html_url}|${repository.full_name}>`,
                         footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png',
                         ts: "123456789"
                     }
