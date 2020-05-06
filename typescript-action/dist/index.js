@@ -4318,55 +4318,35 @@ function run() {
             const comment = ((_a = context.payload.comment) === null || _a === void 0 ? void 0 : _a.body) || '';
             const { sha } = github.context;
             const { owner, repo } = github.context.repo;
-            yield webhook.send({
-                text: github.context.workflow,
-                blocks: [
+            const message = {
+                channel: 'CBR2V3XEX',
+                attachments: [
                     {
-                        type: 'section',
-                        text: {
-                            type: 'mrkdwn',
-                            text: `![avatar](${sender.avatar_url}) ${sender.login}`
-                        }
-                    },
-                    {
-                        type: 'section',
-                        text: {
-                            type: 'mrkdwn',
-                            text: `${context.number} ${eventName} by ${actor}`
-                        }
-                    },
-                    {
-                        type: 'section',
-                        text: {
-                            type: 'mrkdwn',
-                            text: `${commits.length} commits\n${messages}`
-                        }
-                    },
-                    {
-                        type: 'section',
-                        block_id: 'section567',
-                        text: {
-                            type: 'mrkdwn',
-                            text: '<https://example.com|Overlook Hotel> \n :star: \n Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s.'
-                        },
-                        accessory: {
-                            type: 'image',
-                            image_url: 'https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg',
-                            alt_text: 'Haunted hotel image'
-                        }
-                    },
-                    {
-                        type: 'section',
-                        block_id: 'section789',
+                        fallback: 'Plain-text summary of the attachment.',
+                        color: '#2eb886',
+                        pretext: 'Optional text that appears above the attachment block',
+                        author_name: 'Bobby Tables',
+                        author_link: 'http://flickr.com/bobby/',
+                        author_icon: 'http://flickr.com/icons/bobby.jpg',
+                        title: 'Slack API Documentation',
+                        title_link: 'https://api.slack.com/',
+                        text: 'Optional text that appears within the attachment',
                         fields: [
                             {
-                                type: 'mrkdwn',
-                                text: '*Average Rating*\n1.0'
+                                title: 'Priority',
+                                value: 'High',
+                                'short': false
                             }
-                        ]
+                        ],
+                        image_url: 'http://my-website.com/path/to/image.jpg',
+                        thumb_url: 'http://example.com/path/to/thumb.png',
+                        footer: 'Slack API',
+                        footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png',
+                        ts: "123456789"
                     }
                 ]
-            });
+            };
+            yield webhook.send(message);
         }
         catch (error) {
             core.setFailed(error.message);
