@@ -37,12 +37,12 @@ async function run(): Promise<void> {
         {
           fallback: 'Plain-text summary of the attachment.',
           color: '#2eb886',
-          pretext: 'Optional text that appears above the attachment block',
+          pretext: context.workflow,
           author_name: sender.login,
           author_link: sender.html_url,
           author_icon: sender.avatar_url,
-          title: 'Slack API Documentation',
-          title_link: 'https://api.slack.com/',
+          title: `${context.eventName} by ${context.actor} to ${context.ref}`,
+          title_link: context.payload.compare,
           text: 'Optional text that appears within the attachment',
           fields: [
             {
