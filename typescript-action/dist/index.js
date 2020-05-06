@@ -4302,6 +4302,7 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const url = process.env.SLACK_WEBHOOK_URL;
+            const jobStatus = core.getInput('status', { required: true }).toLowerCase();
             const defaults = {
                 icon_emoji: ':bowtie:',
             };
@@ -4324,13 +4325,13 @@ function run() {
                     {
                         fallback: 'Plain-text summary of the attachment.',
                         color: '#2eb886',
-                        pretext: context.workflow,
+                        pretext: `${context.workflow} ${jobStatus}`,
                         author_name: sender.login,
                         author_link: sender.html_url,
                         author_icon: sender.avatar_url,
-                        title: `${context.eventName} by ${context.actor} to ${context.ref}`,
+                        title: `Action ${context.eventName} to ${context.ref} triggered ${context.workflow}`,
                         title_link: context.payload.compare,
-                        text: 'Optional text that appears within the attachment',
+                        text: context.head_commit.message,
                         fields: [
                             {
                                 title: 'Priority',
