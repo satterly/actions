@@ -4329,21 +4329,21 @@ function run() {
                         author_name: sender.login,
                         author_link: sender.html_url,
                         author_icon: sender.avatar_url,
-                        title: `Action ${context.eventName} to ${context.ref} triggered ${context.workflow}`,
+                        title: `${context.eventName} to ${context.ref}`,
                         title_link: context.payload.compare,
-                        text: `\`${context.payload.head_commit.id}\` - ${context.payload.head_commit.message}`,
-                        fields: [
-                            {
-                                title: 'Priority',
-                                value: 'High',
-                                'short': false
-                            }
-                        ],
+                        text: `\`${context.payload.head_commit.id.slice(0, 8)}\` - ${context.payload.head_commit.message}`,
+                        // fields: [
+                        //   {
+                        //     title: 'Priority',
+                        //     value: 'High',
+                        //     'short': false
+                        //   }
+                        // ],
                         image_url: 'http://my-website.com/path/to/image.jpg',
                         thumb_url: 'http://example.com/path/to/thumb.png',
                         footer: `<${repository.html_url}|${repository.full_name}>`,
                         footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png',
-                        ts: `${repository.pushed_at}`
+                        ts: repository.pushed_at
                     }
                 ]
             };
