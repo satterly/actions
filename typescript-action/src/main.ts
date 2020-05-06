@@ -1,4 +1,3 @@
-
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import {IncomingWebhook} from '@slack/webhook'
@@ -32,24 +31,24 @@ async function run(): Promise<void> {
     const { owner, repo } = github.context.repo;
 
     let statusColor = undefined
-    let statusIcon = ':ok_hand:'
+    let statusIcon = ':octocat:'
 
-    if (jobStatus == '1success') {
+    if (jobStatus == 'success') {
       statusColor = 'good'
-      statusIcon = ':white_check_mark:'
+      statusIcon = ':ok_hand:'
     } else if (jobStatus == 'failure') {
       statusColor = 'danger'
-      statusIcon = ':no_entry:'
+      statusIcon = ':boom:'
     } else if (jobStatus == 'cancelled') {
       statusColor = 'warning'
-      statusIcon = ':warning:'
+      statusIcon = ':fire:'
     }
 
     const message = {
       // channel: 'CBR2V3XEX',
       attachments: [
         {
-          fallback: 'Plain-text summary of the attachment.',
+          fallback: `${context.workflow} ${context.eventName} ${jobStatus}`,
           // color: '#2eb886',
           color: statusColor,
           pretext: `${context.workflow} ${jobStatus} ${statusIcon}`,
@@ -67,7 +66,8 @@ async function run(): Promise<void> {
           //   }
           // ],
           // image_url: 'https://octodex.github.com/images/welcometocat.png',
-          thumb_url: 'https://octodex.github.com/images/original.png',
+          // thumb_url: 'https://octodex.github.com/images/original.png',
+          thumb_url: 'https://octodex.github.com/images/codercat.jpg',
           footer: `<${repository.html_url}|${repository.full_name}>`,
           footer_icon: 'https://github.githubassets.com/favicon.ico',
           ts: repository.pushed_at

@@ -4320,24 +4320,24 @@ function run() {
             const { sha } = github.context;
             const { owner, repo } = github.context.repo;
             let statusColor = undefined;
-            let statusIcon = ':ok_hand:';
-            if (jobStatus == '1success') {
+            let statusIcon = ':octocat:';
+            if (jobStatus == 'success') {
                 statusColor = 'good';
-                statusIcon = ':white_check_mark:';
+                statusIcon = ':ok_hand:';
             }
             else if (jobStatus == 'failure') {
                 statusColor = 'danger';
-                statusIcon = ':no_entry:';
+                statusIcon = ':boom:';
             }
             else if (jobStatus == 'cancelled') {
                 statusColor = 'warning';
-                statusIcon = ':warning:';
+                statusIcon = ':fire:';
             }
             const message = {
                 // channel: 'CBR2V3XEX',
                 attachments: [
                     {
-                        fallback: 'Plain-text summary of the attachment.',
+                        fallback: `${context.workflow} ${context.eventName} ${jobStatus}`,
                         // color: '#2eb886',
                         color: statusColor,
                         pretext: `${context.workflow} ${jobStatus} ${statusIcon}`,
@@ -4355,7 +4355,8 @@ function run() {
                         //   }
                         // ],
                         // image_url: 'https://octodex.github.com/images/welcometocat.png',
-                        thumb_url: 'https://octodex.github.com/images/original.png',
+                        // thumb_url: 'https://octodex.github.com/images/original.png',
+                        thumb_url: 'https://octodex.github.com/images/codercat.jpg',
                         footer: `<${repository.html_url}|${repository.full_name}>`,
                         footer_icon: 'https://github.githubassets.com/favicon.ico',
                         ts: repository.pushed_at
