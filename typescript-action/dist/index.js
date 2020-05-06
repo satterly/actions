@@ -4319,12 +4319,23 @@ function run() {
             const comment = ((_a = context.payload.comment) === null || _a === void 0 ? void 0 : _a.body) || '';
             const { sha } = github.context;
             const { owner, repo } = github.context.repo;
+            let statusColor = '';
+            if (jobStatus == 'success') {
+                statusColor = 'good';
+            }
+            else if (jobStatus == 'failure') {
+                statusColor = 'danger';
+            }
+            else if (jobStatus == 'cancelled') {
+                statusColor = 'warning';
+            }
             const message = {
-                channel: 'CBR2V3XEX',
+                // channel: 'CBR2V3XEX',
                 attachments: [
                     {
                         fallback: 'Plain-text summary of the attachment.',
-                        color: '#2eb886',
+                        // color: '#2eb886',
+                        color: statusColor,
                         pretext: `${context.workflow} ${jobStatus}`,
                         author_name: sender.login,
                         author_link: sender.html_url,
