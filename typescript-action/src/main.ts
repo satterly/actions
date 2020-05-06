@@ -43,7 +43,7 @@ async function run(): Promise<void> {
           author_icon: sender.avatar_url,
           title: `Action ${context.eventName} to ${context.ref} triggered ${context.workflow}`,
           title_link: context.payload.compare,
-          text: context.head_commit.message,
+          text: `\`${context.payload.head_commit.id}\` - ${context.payload.head_commit.message}`,
           fields: [
             {
               title: 'Priority',
