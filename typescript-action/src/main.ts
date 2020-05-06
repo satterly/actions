@@ -31,13 +31,18 @@ async function run(): Promise<void> {
     const { sha } = github.context;
     const { owner, repo } = github.context.repo;
 
-    let statusColor = ''
-    if (jobStatus == 'success') {
+    let statusColor = undefined
+    let statusIcon = undefined
+
+    if (jobStatus == '1success') {
       statusColor = 'good'
+      statusIcon = ':white_check_mark:'
     } else if (jobStatus == 'failure') {
       statusColor = 'danger'
+      statusIcon = ':no_entry:'
     } else if (jobStatus == 'cancelled') {
       statusColor = 'warning'
+      statusIcon = ':warning:'
     }
 
     const message = {

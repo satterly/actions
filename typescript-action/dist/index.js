@@ -4319,15 +4319,19 @@ function run() {
             const comment = ((_a = context.payload.comment) === null || _a === void 0 ? void 0 : _a.body) || '';
             const { sha } = github.context;
             const { owner, repo } = github.context.repo;
-            let statusColor = '';
-            if (jobStatus == 'success') {
+            let statusColor = undefined;
+            let statusIcon = undefined;
+            if (jobStatus == '1success') {
                 statusColor = 'good';
+                statusIcon = ':white_check_mark:';
             }
             else if (jobStatus == 'failure') {
                 statusColor = 'danger';
+                statusIcon = ':no_entry:';
             }
             else if (jobStatus == 'cancelled') {
                 statusColor = 'warning';
+                statusIcon = ':warning:';
             }
             const message = {
                 // channel: 'CBR2V3XEX',
