@@ -13,22 +13,9 @@ async function run(): Promise<void> {
 
     const context = (github as any).context
 
-    const actor = context.actor
-    const eventName = context.eventName
-
-    const commits = context.payload.commits
-    const messages = commits
-
-    core.debug(JSON.stringify(context))
-
     const sender = context.payload.sender
-
     const repository = context.payload.repository
-    const issue = context.payload.issue
-    const comment = context.payload.comment?.body || ''
-
-    const { sha } = github.context;
-    const { owner, repo } = github.context.repo;
+    const head_commit = context.payload.head_commit
 
     let statusColor = undefined
     let statusIcon = ':octocat:'
@@ -48,7 +35,7 @@ async function run(): Promise<void> {
       // channel: 'CBR2V3XEX',
       attachments: [
         {
-          fallback: `${context.workflow} ${context.eventName} ${jobStatus}`,
+          fallback: `[GitHub]: [${repository.full_name}] ${context.workflow} ${context.eventName} ${jobStatus}`,
           // color: '#2eb886',
           color: statusColor,
           pretext: `${context.workflow} ${jobStatus} ${statusIcon}`,
@@ -57,7 +44,7 @@ async function run(): Promise<void> {
           author_icon: sender.avatar_url,
           title: `${context.eventName} to ${context.ref}`,
           title_link: context.payload.compare,
-          text: `\`${context.payload.head_commit.id.slice(0,8)}\` - ${context.payload.head_commit.message}`,
+          text: `\`${head_commit.id.slice(0,8)}\` - ${head_commit.message}`,
           // fields: [
           //   {
           //     title: 'Priority',
