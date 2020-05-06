@@ -4300,12 +4300,10 @@ const webhook_1 = __webpack_require__(736);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            // inputs
             const url = process.env.SLACK_WEBHOOK_URL;
             const jobStatus = core.getInput('status', { required: true }).toLowerCase();
-            const defaults = {
-                icon_emoji: ':bowtie:',
-            };
-            const webhook = new webhook_1.IncomingWebhook(url, defaults);
+            // github event payload
             const context = github.context;
             const sender = context.payload.sender;
             const repository = context.payload.repository;
@@ -4324,6 +4322,7 @@ function run() {
                 statusColor = 'warning';
                 statusIcon = ':fire:';
             }
+            const webhook = new webhook_1.IncomingWebhook(url);
             const message = {
                 // channel: 'CBR2V3XEX',
                 attachments: [

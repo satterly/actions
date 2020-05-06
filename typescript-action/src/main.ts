@@ -4,15 +4,12 @@ import {IncomingWebhook} from '@slack/webhook'
 
 async function run(): Promise<void> {
   try {
+    // inputs
     const url: string = process.env.SLACK_WEBHOOK_URL!
     const jobStatus = core.getInput('status', { required: true }).toLowerCase()
-    const defaults = {
-      icon_emoji: ':bowtie:',
-    }
-    const webhook = new IncomingWebhook(url, defaults)
 
+    // github event payload
     const context = (github as any).context
-
     const sender = context.payload.sender
     const repository = context.payload.repository
     const head_commit = context.payload.head_commit
@@ -31,6 +28,7 @@ async function run(): Promise<void> {
       statusIcon = ':fire:'
     }
 
+    const webhook = new IncomingWebhook(url)
     const message = {
       // channel: 'CBR2V3XEX',
       attachments: [
