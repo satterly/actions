@@ -32,7 +32,7 @@ async function run(): Promise<void> {
     const { owner, repo } = github.context.repo;
 
     let statusColor = undefined
-    let statusIcon = undefined
+    let statusIcon = ':ok_hand:'
 
     if (jobStatus == '1success') {
       statusColor = 'good'
@@ -52,7 +52,7 @@ async function run(): Promise<void> {
           fallback: 'Plain-text summary of the attachment.',
           // color: '#2eb886',
           color: statusColor,
-          pretext: `${context.workflow} ${jobStatus}`,
+          pretext: `${context.workflow} ${jobStatus} ${statusIcon}`,
           author_name: sender.login,
           author_link: sender.html_url,
           author_icon: sender.avatar_url,

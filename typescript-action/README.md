@@ -105,6 +105,8 @@ npm install @slack/webhook --save
 
 https://developer.github.com/v3/activity/events/types/#pushevent
 
+https://www.webfx.com/tools/emoji-cheat-sheet/
+
 https://api.slack.com/apps
 
 https://api.slack.com/docs/messages/builder?msg=%7B%22text%22%3A%22I%20am%20a%20test%20message%22%2C%22attachments%22%3A%5B%7B%22text%22%3A%22And%20here%E2%80%99s%20an%20attachment!%22%7D%5D%7D
