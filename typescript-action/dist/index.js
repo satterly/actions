@@ -4350,10 +4350,10 @@ function run() {
                         //     'short': false
                         //   }
                         // ],
-                        image_url: 'http://my-website.com/path/to/image.jpg',
-                        thumb_url: 'http://example.com/path/to/thumb.png',
+                        // image_url: 'https://octodex.github.com/images/welcometocat.png',
+                        thumb_url: 'https://octodex.github.com/images/original.png',
                         footer: `<${repository.html_url}|${repository.full_name}>`,
-                        footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png',
+                        footer_icon: 'https://github.githubassets.com/favicon.ico',
                         ts: repository.pushed_at
                     }
                 ]
