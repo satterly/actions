@@ -4342,7 +4342,7 @@ function run() {
                         thumb_url: 'http://example.com/path/to/thumb.png',
                         footer: `<${repository.html_url}|${repository.full_name}>`,
                         footer_icon: 'https://platform.slack-edge.com/img/default_application_icon.png',
-                        ts: "123456789"
+                        ts: `${repository.pushed_at}`
                     }
                 ]
             };
